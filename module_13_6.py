@@ -30,7 +30,7 @@ ikb.add(ibutton_2)
 
 @dp.message_handler(commands=['start'])
 async def all_massages(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup = ikb)
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
 @dp.callback_query_handler(text='formulas')
@@ -41,13 +41,13 @@ async def get_formulas(call):
 
 @dp.callback_query_handler(text='calories')
 async def set_age(call):
-    await call.message.answer('Введите свой возраст в годах:')
+    await call.message.answer(text='Введите свой возраст в годах:')
     await UserState.age.set()
 
 
 @dp.message_handler(text='Рассчитать')
 async def main_menu(message):
-    await message.answer(text='Выберите опцию', reply_markup=kb)
+    await message.answer(text='Выберите опцию:', reply_markup=ikb)
 
 
 @dp.message_handler(state=UserState.age)
